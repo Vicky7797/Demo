@@ -21,12 +21,19 @@ pipeline {
         }
 
 
-        stage ('Deployment Stage') {
+        stage ('Deploy') {
             steps {
-                withMaven(maven : 'maven 3.6.3') {
-                    bat 'mvn deploy'
+
+                withCredentials([[$class          : 'UsernamePasswordMultiBinding',
+                                  credentialsId   : 'PCF_LOGIN',
+                                  usernameVariable: 'USERNAME',
+                                  passwordVariable: 'PASSWORD']]) {
+
+                    bat '/usr/local/bin/cf login -a http://api.run.pivotal.io -u $USERNAME -p $PASSWORD'
+                    bat '/usr/local/bin/cf push'
                 }
             }
+
         }
     }
 }
