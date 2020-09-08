@@ -1,9 +1,10 @@
+instances: 1
+buildpack: https://github.com/cloudfoundry/java-buildpack.git#v3.19
+path: target/PcfDemo-0.0.1-SNAPSHOT.jar
 applications:
-- name: SpringBootDemo
-  random-route: true
-  instances: 1
-  path: target/PcfDemo-0.0.1-SNAPSHOT.jar
-  health-check-type: none
-  
-  env:
-   JAVA_OPTS: '-XX:MaxMetaspaceSize=80780K -Xss512k -Xmx200M -XX:ReservedCodeCacheSize=16M -XX:MaxDirectMemorySize=16M'
+  - name: SpringBootDemo
+    random-route: true
+    timeout : 180
+    
+    env:
+     JAVA_OPTS: '-XX:MaxMetaspaceSize=80780K -Xss512k -Xmx200M -XX:ReservedCodeCacheSize=16M -XX:MaxDirectMemorySize=16M'
