@@ -6,7 +6,7 @@ pipeline {
 
             steps {
                 withMaven(maven : 'maven 3.6.3') {
-                    bat 'mvn clean compile'
+                    sh 'mvn clean compile'
                 }
             }
         }
@@ -15,7 +15,7 @@ pipeline {
 
             steps {
                 withMaven(maven : 'maven 3.6.3') {
-                    bat 'mvn test'
+                    sh 'mvn test'
                 }
             }
         }
@@ -29,8 +29,8 @@ pipeline {
                                   usernameVariable: 'USERNAME',
                                   passwordVariable: 'PASSWORD']]) {
 
-                    bat '/usr/local/bin/cf login -a http://api.run.pivotal.io -u $USERNAME -p $PASSWORD'
-                    bat '/usr/local/bin/cf push'
+                    sh '/usr/local/bin/cf login -a http://api.run.pivotal.io -u $USERNAME -p $PASSWORD'
+                    sh '/usr/local/bin/cf push'
                 }
             }
 
