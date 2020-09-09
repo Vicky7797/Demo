@@ -30,7 +30,7 @@ pipeline {
                                   passwordVariable: 'PASSWORD']]) {
 
                     bat '/usr/local/bin/cf login -a http://api.run.pivotal.io -u $USERNAME -p $PASSWORD'
-                    bat '/usr/local/bin/cf push PcfDemo -p target/PcfDemo-0.0.1-SNAPSHOT.war'
+                    bat '/usr/local/bin/cf push PcfDemo -p target/PcfDemo-0.0.1-SNAPSHOT.jar'
                 }
             }
 
